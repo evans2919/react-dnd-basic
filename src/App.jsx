@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
-const initialToDos = [
+const initialToDos = JSON.parse(localStorage.getItem("todos")) || [
     {
         id: 1,
         title: "Pokemon Rubi",
@@ -23,6 +23,10 @@ const initialToDos = [
 const App = () => {
     const [toDos, setToDos] = useState(initialToDos);
 
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(toDos));
+    }, [toDos]);
+
     const handleDragEnd = (result) => {
         if (!result.destination) return;
         const dropStart = result.source.index;
@@ -31,7 +35,7 @@ const App = () => {
         const [reorderedItems] = copyArray.splice(dropStart, 1);
         copyArray.splice(dropEnd, 0, reorderedItems);
         setToDos(copyArray);
-    };    
+    };
 
     return (
         <>
