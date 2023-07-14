@@ -1,6 +1,27 @@
-li {
+
+@media screen and (max-width: 640px) {
+  body{
+    align-content: flex-start !important;
+  }
+}
+body {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 100vh;
+}
+
+#root {
+  width: 600px;
+}
+
+
+li {  
     border: 2px solid salmon;
     padding: 0.5rem;
+    text-align: left;
 }
 
 ul {
